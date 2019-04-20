@@ -1,10 +1,41 @@
-  <nav>
+<nav>
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light btn">Button</a></li>
-        <li><a class="waves-effect waves-light btn">Button <i class="material-icons right">cloud</i></a></li>
-        <li><a class="waves-effect waves-light btn-large">Large Button</a></li>
-      </ul>
+        <a href="#!" class="brand-logo">Mongo Scraper</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a id="home" href="/">Home</a></li>
+            <li><a id="saved" href="/saved">Saved Articles</a></li>
+            <li><a class="waves-effect waves-light btn" id="newScrape">SCRAPE NEW ARTICLES!</a></li>
+            <li><a class="waves-effect waves-light btn" id="clearArticles">CLEAR ARTILCES</a></li>
+        </ul>
     </div>
-  </nav>
+</nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="/">Home</a></li>
+    <li><a href="/saved">Saved Articles</a></li>
+    <li><a href="/" id="newScrape">Scrape New Articles</a></li>
+    <li><a href="#">Clear Articles</a></li>
+  </ul>
+
+<div class="container">
+<ul class="collapsible popout" id="scrapeResults">
+    {{#each art}}
+    {{/each}}
+    {{!-- <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li> --}}
+</ul>
+
+</div>
+
+<script src="/js/index.js"></script>
