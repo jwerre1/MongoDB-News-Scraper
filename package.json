@@ -1,0 +1,28 @@
+{
+  "name": "mongodb-news-scraper",
+  "version": "1.0.0",
+  "description": "A scraper website using MongoDB, Mongoose, Cheerio, Axios, Express, and Handlebars. ",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwerre1/MongoDB-News-Scraper.git"
+  },
+  "author": "Jordan Werre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jwerre1/MongoDB-News-Scraper/issues"
+  },
+  "homepage": "https://github.com/jwerre1/MongoDB-News-Scraper#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mongoose": "^5.5.2",
+    "morgan": "^1.9.1"
+  }
+}
