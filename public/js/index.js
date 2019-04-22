@@ -41,6 +41,12 @@ var API = {
             type: "DELETE"
         });
     },
+    deleteAllScrapedArt: function () {
+        return $.ajax({
+            url: "api/articles/",
+            type: "DELETE"
+        });
+    }
 };
 
 var initArticles = function () {
@@ -99,6 +105,27 @@ var newScrape = function () {
     });
 };
 
+var deleteAllScraped = function() {
+    API.deleteAllScrapedArt().then(function () {
+        $("#scrapeResults").empty();
+        API.init().then(function (data) {
+            var $arts = data.map(function (artic) {
+                var $li = $("<li>");
+    
+                var saveButton = $("<button>").addClass("btn-small waves-effect waves-light right saveIt").attr("type", "submit").attr("name", "action").text("Save Article"); var title = $("<div>").text(artic.title).addClass("collapsible-header");
+    
+                var span = $("<a>").attr("href", artic.link).attr("target", "_blank").append($("<span>").text(artic.summary));
+                var body = $("<div>").attr("data-id", artic._id).addClass("collapsible-body").append(span).append(saveButton);
+    
+                $li.append(title).append(body);
+    
+                return $li;
+            });
+            $("#scrapeResults").append($arts);
+        });
+    })
+};
+
 var saveArticle = function () {
     var id = $(this).parent().attr("data-id");
 
@@ -129,10 +156,6 @@ var saveArticle = function () {
 
     // API.deleteArticle(id).then(function (dataThree) {
     // });
-
-
-
-
 };
 
 
@@ -214,5 +237,9 @@ $(document).on("click", "#savenote", function () {
 });
 
 
+
+
 $("#newScrape").on("click", newScrape);
 $("#scrapeResults").on("click", ".saveIt", saveArticle);
+
+$("#clearScrapedArticles").on("click", deleteAllScraped);

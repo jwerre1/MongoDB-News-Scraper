@@ -78,6 +78,48 @@ app.get("/api/articles", function (req, res) {
         });
 });
 
+// Route for getting all Articles from the db
+app.delete("/api/articles", function (req, res) {
+    // Grab every document in the Articles collection
+    db.Article.remove({})
+        .then(function (dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+            res.json(dbArticle);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
+// Route for getting all Articles from the db
+app.delete("/api/saved", function (req, res) {
+    // Grab every document in the Articles collection
+    db.Save.remove({})
+        .then(function (dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+            res.json(dbArticle);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
+// Route for getting all Articles from the db
+app.get("/api/saved", function (req, res) {
+    // Grab every document in the Articles collection
+    db.Save.find({})
+        .then(function (dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+            res.json(dbArticle);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
 //Route to find specific article for saving
 app.get("/api/articles/:id", function (req, res) {
     db.Article.findOne({ _id: req.params.id })
@@ -93,8 +135,35 @@ app.get("/api/articles/:id", function (req, res) {
 });
 
 //Route to find specific article for saving
+app.get("/api/saved/:id", function (req, res) {
+    db.Save.findOne({ _id: req.params.id })
+        .then(function (dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+            res.json(dbArticle);
+            
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
+//Route to find specific article for saving
 app.delete("/api/articles/:id", function (req, res) {
     db.Article.remove({ _id: req.params.id })
+        .then(function (dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+            res.json(dbArticle);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
+//Route to find specific article for saving
+app.delete("/api/saved/:id", function (req, res) {
+    db.Save.remove({ _id: req.params.id })
         .then(function (dbArticle) {
             // If we were able to successfully find Articles, send them back to the client
             res.json(dbArticle);
