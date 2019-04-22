@@ -18,7 +18,29 @@ var API = {
             url: "api/articles",
             type: "GET"
         });
-    }
+    },
+    getArticle: function (id) {
+        return $.ajax({
+            url: "api/articles/" + id,
+            type: "GET"
+        });
+    },
+    save: function (article) {
+        return $.ajax({
+          headers: {
+            "Content-Type": "application/json"
+          },
+          type: "POST",
+          url: "api/saved",
+          data: JSON.stringify(article)
+        });
+      },
+      deleteArticle: function (id) {
+        return $.ajax({
+            url: "api/articles/" + id,
+            type: "DELETE"
+        });
+    },
 };
 
 var initArticles = function () {
@@ -59,26 +81,54 @@ var newScrape = function () {
         //     return $li;
         // });
         // $("#scrapeResults").append($arts);
-    });
-    API.init().then(function (data) {
-        var $arts = data.map(function (artic) {
-            var $li = $("<li>");
-
-            var saveButton = $("<button>").addClass("btn-small waves-effect waves-light right saveIt").attr("type", "submit").attr("name", "action").text("Save Article");            var title = $("<div>").text(artic.title).addClass("collapsible-header");
-
-            var span = $("<a>").attr("href", artic.link).attr("target", "_blank").append($("<span>").text(artic.summary));
-            var body = $("<div>").attr("data-id", artic._id).addClass("collapsible-body").append(span).append(saveButton);
-
-            $li.append(title).append(body);
-
-            return $li;
+        API.init().then(function (data) {
+            var $arts = data.map(function (artic) {
+                var $li = $("<li>");
+    
+                var saveButton = $("<button>").addClass("btn-small waves-effect waves-light right saveIt").attr("type", "submit").attr("name", "action").text("Save Article"); var title = $("<div>").text(artic.title).addClass("collapsible-header");
+    
+                var span = $("<a>").attr("href", artic.link).attr("target", "_blank").append($("<span>").text(artic.summary));
+                var body = $("<div>").attr("data-id", artic._id).addClass("collapsible-body").append(span).append(saveButton);
+    
+                $li.append(title).append(body);
+    
+                return $li;
+            });
+            $("#scrapeResults").append($arts);
         });
-        $("#scrapeResults").append($arts);
     });
 };
 
-var saveArticle = function() {
+var saveArticle = function () {
     var id = $(this).parent().attr("data-id");
+
+    API.getArticle(id).then(function (data) {
+        console.log(data);
+        API.save(data).then(function (dataTwo) {
+        });
+        API.deleteArticle(id).then(function (dataThree) {
+            $("#scrapeResults").empty();
+            API.init().then(function (data) {
+                var $arts = data.map(function (artic) {
+                    var $li = $("<li>");
+        
+                    var saveButton = $("<button>").addClass("btn-small waves-effect waves-light right saveIt").attr("type", "submit").attr("name", "action").text("Save Article");
+                    var title = $("<div>").text(artic.title).addClass("collapsible-header");
+        
+                    var span = $("<a>").attr("href", artic.link).attr("target", "_blank").append($("<span>").text(artic.summary));
+                    var body = $("<div>").attr("data-id", artic._id).addClass("collapsible-body").append(span).append(saveButton);
+        
+                    $li.append(title).append(body);
+        
+                    return $li;
+                });
+                $("#scrapeResults").append($arts);
+            });
+        });
+    });
+
+    // API.deleteArticle(id).then(function (dataThree) {
+    // });
 
 
 

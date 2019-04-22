@@ -78,6 +78,55 @@ app.get("/api/articles", function (req, res) {
         });
 });
 
+//Route to find specific article for saving
+app.get("/api/articles/:id", function (req, res) {
+    db.Article.findOne({ _id: req.params.id })
+        .then(function (dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+            res.json(dbArticle);
+            
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
+//Route to find specific article for saving
+app.delete("/api/articles/:id", function (req, res) {
+    db.Article.remove({ _id: req.params.id })
+        .then(function (dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+            res.json(dbArticle);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
+
+app.post("/api/saved", function (req, res) {
+    console.log(req.body);
+
+    var result = {};
+
+    result.title = req.body.title;
+    result.link = req.body.link;
+    result.summary = req.body.summary;
+
+    db.Save.create(result)
+    .then(function (dbSaved) {
+        // View the added result in the console
+        console.log(dbSaved);
+    })
+    .catch(function (err) {
+        // If an error occurred, log it
+        console.log(err);
+    });
+});
+
+
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function (req, res) {
     // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
