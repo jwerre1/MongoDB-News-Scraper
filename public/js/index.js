@@ -55,7 +55,7 @@ var initArticles = function () {
         var $arts = data.map(function (artic) {
             var $li = $("<li>");
 
-            var saveButton = $("<button>").addClass("btn-small waves-effect waves-light right saveIt").attr("type", "submit").attr("name", "action").text("Save Article");
+            var saveButton = $("<button>").addClass("btn-small waves-effect waves-light indigo right saveIt").attr("type", "submit").attr("name", "action").text("Save Article");
             var title = $("<div>").text(artic.title).addClass("collapsible-header");
 
             var span = $("<a>").attr("href", artic.link).attr("target", "_blank").append($("<span>").text(artic.summary));
@@ -91,7 +91,7 @@ var newScrape = function () {
             var $arts = data.map(function (artic) {
                 var $li = $("<li>");
     
-                var saveButton = $("<button>").addClass("btn-small waves-effect waves-light right saveIt").attr("type", "submit").attr("name", "action").text("Save Article"); var title = $("<div>").text(artic.title).addClass("collapsible-header");
+                var saveButton = $("<button>").addClass("btn-small waves-effect waves-light indigo right saveIt").attr("type", "submit").attr("name", "action").text("Save Article"); var title = $("<div>").text(artic.title).addClass("collapsible-header");
     
                 var span = $("<a>").attr("href", artic.link).attr("target", "_blank").append($("<span>").text(artic.summary));
                 var body = $("<div>").attr("data-id", artic._id).addClass("collapsible-body").append(span).append(saveButton);
@@ -112,7 +112,7 @@ var deleteAllScraped = function() {
             var $arts = data.map(function (artic) {
                 var $li = $("<li>");
     
-                var saveButton = $("<button>").addClass("btn-small waves-effect waves-light right saveIt").attr("type", "submit").attr("name", "action").text("Save Article"); var title = $("<div>").text(artic.title).addClass("collapsible-header");
+                var saveButton = $("<button>").addClass("btn-small waves-effect waves-light indigo right saveIt").attr("type", "submit").attr("name", "action").text("Save Article"); var title = $("<div>").text(artic.title).addClass("collapsible-header");
     
                 var span = $("<a>").attr("href", artic.link).attr("target", "_blank").append($("<span>").text(artic.summary));
                 var body = $("<div>").attr("data-id", artic._id).addClass("collapsible-body").append(span).append(saveButton);
@@ -139,7 +139,7 @@ var saveArticle = function () {
                 var $arts = data.map(function (artic) {
                     var $li = $("<li>");
         
-                    var saveButton = $("<button>").addClass("btn-small waves-effect waves-light right saveIt").attr("type", "submit").attr("name", "action").text("Save Article");
+                    var saveButton = $("<button>").addClass("btn-small waves-effect waves-light indigo right saveIt").attr("type", "submit").attr("name", "action").text("Save Article");
                     var title = $("<div>").text(artic.title).addClass("collapsible-header");
         
                     var span = $("<a>").attr("href", artic.link).attr("target", "_blank").append($("<span>").text(artic.summary));

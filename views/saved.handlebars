@@ -1,25 +1,60 @@
 <nav>
-    <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Mongo Scraper</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a id="home" href="/">Home</a></li>
-            <li><a id="saved" href="/saved">Saved Articles</a></li>
-            {{!-- <li><a class="waves-effect waves-light btn" id="newScrape">SCRAPE NEW ARTICLES!</a></li> --}}
-            <li><a class="waves-effect waves-light btn" id="clearSavedArticles">CLEAR SAVED ARTICLES</a></li>
-        </ul>
-    </div>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Mongo Scraper</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a id="home" href="/">Home</a></li>
+      <li><a id="saved" href="/saved">Saved Articles</a></li>
+      {{!-- <li><a class="waves-effect waves-light btn" id="newScrape">SCRAPE NEW ARTICLES!</a></li> --}}
+      <li><a class="waves-effect waves-light btn" id="clearSavedArticles">CLEAR SAVED ARTICLES</a></li>
+    </ul>
+  </div>
 </nav>
 
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="/">Home</a></li>
-    <li><a href="/saved">Saved Articles</a></li>
-    {{!-- <li><a href="/" id="newScrape">Scrape New Articles</a></li> --}}
-    {{!-- <li><a id="clearSavedArticles">Clear Saved Articles</a></li> --}}
-  </ul>
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="/">Home</a></li>
+  <li><a href="/saved">Saved Articles</a></li>
+  {{!-- <li><a href="/" id="newScrape">Scrape New Articles</a></li> --}}
+  {{!-- <li><a id="clearSavedArticles">Clear Saved Articles</a></li> --}}
+</ul>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <div id="modalHeader"></div>
+
+
+    <div id="oldNotes">
+    {{#each note}}
+    {{/each}}
+      {{!-- <div class="row">
+        <div class="col s10">
+          <h6>Modal Header</h6>
+        </div>
+        <div class="col s2">
+          <a class="waves-effect waves-light right btn-floating" id="clearSavedArticles"><i
+              class="material-icons red">close</i></a>
+        </div>
+      </div> --}}
+    </div>
+
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Note:</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="saveNote">Save Note</a>
+  </div>
+</div>
 
 <div class="container">
-<ul class="collapsible popout" id="savedResults">
+  <ul class="collapsible popout" id="savedResults">
     {{#each save}}
     {{/each}}
     {{!-- <li>
@@ -34,7 +69,7 @@
       <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
       <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
     </li> --}}
-</ul>
+  </ul>
 
 </div>
 
