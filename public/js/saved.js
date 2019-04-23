@@ -67,6 +67,12 @@ var API = {
             type: "DELETE"
         });
     },
+    deleteNoteYeah: function (id) {
+        return $.ajax({
+            url: "api/notes/" + id,
+            type: "DELETE"
+        });
+    },
     deleteAllSavedArt: function () {
         return $.ajax({
             url: "api/saved/",
@@ -179,7 +185,7 @@ var addNote = function () {
         $("#modalHeader").append($("<h5>").text(data.title));
 
         var $row = $("<row>").append($("<div>").addClass("col s10").append($("<h6>").text(data.note.body)));
-        var button = $("<div>").addClass("col s2").append($("<a>").addClass("waves-effect waves-light right btn-floating").attr("id", "clearSavedArticles").append($("<i>").addClass("material-icons red").text("close")))
+        var button = $("<div>").addClass("col s2").append($("<a>").addClass("waves-effect waves-light right btn-floating").attr("note-id", data.note._id).attr("data-id", data._id).attr("id", "clearSavedNote").append($("<i>").addClass("material-icons red").text("close")))
         $row.append(button);
 
 
@@ -204,9 +210,42 @@ var saveNewNote = function () {
     M.textareaAutoResize($("#textarea1"));
 };
 
+var deleteNote = function () {
+    console.log("click read");
+    var id = $(this).parent().attr("note-id");
+
+    console.log(id);
+    API.deleteNoteYeah(id).then(function () {
+    });
+
+    $("#modalHeader").empty();
+    $("#oldNotes").empty();
+
+    $("#textarea1").val("");
+    M.textareaAutoResize($("#textarea1"));
+
+    var idTwo = $(this).parent().attr("data-id");
+    API.getSavedArticle(idTwo).then(function (data) {
+        console.log(data);
+        // console.log(data._id);
+        $("#saveNote").attr("data-id", data._id);
+        $("#modalHeader").append($("<h5>").text(data.title));
+
+        var $row = $("<row>").append($("<div>").addClass("col s10").append($("<h6>").text(data.note.body)));
+        var button = $("<div>").addClass("col s2").append($("<a>").addClass("waves-effect waves-light right btn-floating").attr("note-id", data.note._id).attr("id", "clearSavedNote").append($("<i>").addClass("material-icons red").text("close")))
+        $row.append(button);
+
+
+        $("#oldNotes").append($row);
+
+    });
+};
+
 $("#savedResults").on("click", ".deleteIt", deleteSavedArt);
 $("#clearSavedArticles").on("click", deleteAllSaved);
 
 $("#savedResults").on("click", ".addNote", addNote);
 
 $("#saveNote").on("click", saveNewNote);
+
+$("#oldNotes").on("click", ".red", deleteNote);
