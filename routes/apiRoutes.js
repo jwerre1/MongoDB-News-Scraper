@@ -107,6 +107,20 @@ app.delete("/api/saved", function (req, res) {
 });
 
 // Route for getting all Articles from the db
+app.delete("/api/notes", function (req, res) {
+    // Grab every document in the Articles collection
+    db.Note.remove({})
+        .then(function (dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+            res.json(dbArticle);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
+
+// Route for getting all Articles from the db
 app.get("/api/saved", function (req, res) {
     // Grab every document in the Articles collection
     db.Save.find({})
